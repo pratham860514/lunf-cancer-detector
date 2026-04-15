@@ -1,7 +1,7 @@
 import streamlit as st
 import numpy as np
 import cv2
-import tf_keras as keras
+from keras import models as keras
 from PIL import Image
 import gdown
 import os
