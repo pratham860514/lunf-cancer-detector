@@ -1,10 +1,16 @@
 import streamlit as st
 import numpy as np
 import cv2
-from tensorflow import keras
 from PIL import Image
 import gdown
 import os
+
+try:
+    from tensorflow import keras
+    load_keras = "tf"
+except ImportError:
+    import keras
+    load_keras = "keras"
 
 # Page config
 st.set_page_config(
@@ -38,7 +44,7 @@ def load_model():
     if not os.path.exists(MODEL_PATH):
         with st.spinner("Downloading model... please wait ⏳"):
             # Apna Google Drive file ID yahan daalo
-            file_id = "https://drive.google.com/file/d/1tiazW0ro3XRMWq2bKNC775ZMu5VfRwEZ/view?usp=sharing"
+            file_id = "1tiazW0ro3XRMWq2bKNC775ZMu5VfRwEZ"
             url = f"https://drive.google.com/uc?id={file_id}"
             gdown.download(url, MODEL_PATH, quiet=False)
     model = keras.models.load_model(MODEL_PATH)
